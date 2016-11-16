@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module ROM
+module SPRITE_ROM
 (
 	input  wire[7:0] iAddress,
 	output reg  	 oMask
@@ -9,296 +9,296 @@ always @ ( iAddress )
 begin
 	case (iAddress)
 
-        // Fila 0x0
-		0x00: oMask = 1'b1;
-		0x01: oMask = 1'b1; 
-		0x02: oMask = 1'b1; 
-		0x03: oMask = 1'b0; 
-		0x04: oMask = 1'b0; 
-		0x05: oMask = 1'b0; 
-		0x06: oMask = 1'b0; 
-		0x07: oMask = 1'b0; 
-		0x08: oMask = 1'b0; 
-		0x09: oMask = 1'b0; 
-        0x0a: oMask = 1'b0;
-        0x0b: oMask = 1'b0;
-        0x0c: oMask = 1'b0;
-        0x0d: oMask = 1'b1;
-        0x0e: oMask = 1'b1;
-        0x0f: oMask = 1'b1;
-        
-        // Fila 0x1
-		0x10: oMask = 1'b1;
-		0x11: oMask = 1'b1; 
-		0x12: oMask = 1'b1; 
-		0x13: oMask = 1'b0; 
-		0x14: oMask = 1'b0; 
-		0x15: oMask = 1'b0; 
-		0x16: oMask = 1'b0; 
-		0x17: oMask = 1'b0; 
-		0x18: oMask = 1'b0; 
-		0x19: oMask = 1'b0; 
-        0x1a: oMask = 1'b0;
-        0x1b: oMask = 1'b0;
-        0x1c: oMask = 1'b0;
-        0x1d: oMask = 1'b1;
-        0x1e: oMask = 1'b1;
-        0x1f: oMask = 1'b1;
+		// Fila 0x0
+		8'h00: oMask = 1'b1;
+		8'h01: oMask = 1'b1; 
+		8'h02: oMask = 1'b1; 
+		8'h03: oMask = 1'b0; 
+		8'h04: oMask = 1'b0; 
+		8'h05: oMask = 1'b0; 
+		8'h06: oMask = 1'b0; 
+		8'h07: oMask = 1'b0; 
+		8'h08: oMask = 1'b0; 
+		8'h09: oMask = 1'b0; 
+		8'h0a: oMask = 1'b0;
+		8'h0b: oMask = 1'b0;
+		8'h0c: oMask = 1'b0;
+		8'h0d: oMask = 1'b1;
+		8'h0e: oMask = 1'b1;
+		8'h0f: oMask = 1'b1;
+		
+		// Fila 8'h1
+		8'h10: oMask = 1'b1;
+		8'h11: oMask = 1'b1; 
+		8'h12: oMask = 1'b1; 
+		8'h13: oMask = 1'b0; 
+		8'h14: oMask = 1'b0; 
+		8'h15: oMask = 1'b0; 
+		8'h16: oMask = 1'b0; 
+		8'h17: oMask = 1'b0; 
+		8'h18: oMask = 1'b0; 
+		8'h19: oMask = 1'b0; 
+		8'h1a: oMask = 1'b0;
+		8'h1b: oMask = 1'b0;
+		8'h1c: oMask = 1'b0;
+		8'h1d: oMask = 1'b1;
+		8'h1e: oMask = 1'b1;
+		8'h1f: oMask = 1'b1;
 
-        // Fila 0x2
-		0x20: oMask = 1'b1;
-		0x21: oMask = 1'b1; 
-		0x22: oMask = 1'b1; 
-		0x23: oMask = 1'b0; 
-		0x24: oMask = 1'b0; 
-		0x25: oMask = 1'b0; 
-		0x26: oMask = 1'b0; 
-		0x27: oMask = 1'b0; 
-		0x28: oMask = 1'b0; 
-		0x29: oMask = 1'b0; 
-        0x2a: oMask = 1'b0;
-        0x2b: oMask = 1'b0;
-        0x2c: oMask = 1'b0;
-        0x2d: oMask = 1'b1;
-        0x2e: oMask = 1'b1;
-        0x2f: oMask = 1'b1;
+		// Fila 8'h2
+		8'h20: oMask = 1'b1;
+		8'h21: oMask = 1'b1; 
+		8'h22: oMask = 1'b1; 
+		8'h23: oMask = 1'b0; 
+		8'h24: oMask = 1'b0; 
+		8'h25: oMask = 1'b0; 
+		8'h26: oMask = 1'b0; 
+		8'h27: oMask = 1'b0; 
+		8'h28: oMask = 1'b0; 
+		8'h29: oMask = 1'b0; 
+		8'h2a: oMask = 1'b0;
+		8'h2b: oMask = 1'b0;
+		8'h2c: oMask = 1'b0;
+		8'h2d: oMask = 1'b1;
+		8'h2e: oMask = 1'b1;
+		8'h2f: oMask = 1'b1;
 
-        // Fila 0x3
-		0x30: oMask = 1'b0;
-		0x31: oMask = 1'b0; 
-		0x32: oMask = 1'b0; 
-		0x33: oMask = 1'b0; 
-		0x34: oMask = 1'b0; 
-		0x35: oMask = 1'b0; 
-		0x36: oMask = 1'b0; 
-		0x37: oMask = 1'b0; 
-		0x38: oMask = 1'b0; 
-		0x39: oMask = 1'b0; 
-        0x3a: oMask = 1'b0;
-        0x3b: oMask = 1'b0;
-        0x3c: oMask = 1'b0;
-        0x3d: oMask = 1'b0;
-        0x3e: oMask = 1'b0;
-        0x3f: oMask = 1'b0;
+		// Fila 8'h3
+		8'h30: oMask = 1'b0;
+		8'h31: oMask = 1'b0; 
+		8'h32: oMask = 1'b0; 
+		8'h33: oMask = 1'b0; 
+		8'h34: oMask = 1'b0; 
+		8'h35: oMask = 1'b0; 
+		8'h36: oMask = 1'b0; 
+		8'h37: oMask = 1'b0; 
+		8'h38: oMask = 1'b0; 
+		8'h39: oMask = 1'b0; 
+		8'h3a: oMask = 1'b0;
+		8'h3b: oMask = 1'b0;
+		8'h3c: oMask = 1'b0;
+		8'h3d: oMask = 1'b0;
+		8'h3e: oMask = 1'b0;
+		8'h3f: oMask = 1'b0;
 
-        // Fila 0x4
-		0x40: oMask = 1'b0;
-		0x41: oMask = 1'b0; 
-		0x42: oMask = 1'b0; 
-		0x43: oMask = 1'b0; 
-		0x44: oMask = 1'b0; 
-		0x45: oMask = 1'b0; 
-		0x46: oMask = 1'b0; 
-		0x47: oMask = 1'b0; 
-		0x48: oMask = 1'b0; 
-		0x49: oMask = 1'b0; 
-        0x4a: oMask = 1'b0;
-        0x4b: oMask = 1'b0;
-        0x4c: oMask = 1'b0;
-        0x4d: oMask = 1'b0;
-        0x4e: oMask = 1'b0;
-        0x4f: oMask = 1'b0;
+		// Fila 8'h4
+		8'h40: oMask = 1'b0;
+		8'h41: oMask = 1'b0; 
+		8'h42: oMask = 1'b0; 
+		8'h43: oMask = 1'b0; 
+		8'h44: oMask = 1'b0; 
+		8'h45: oMask = 1'b0; 
+		8'h46: oMask = 1'b0; 
+		8'h47: oMask = 1'b0; 
+		8'h48: oMask = 1'b0; 
+		8'h49: oMask = 1'b0; 
+		8'h4a: oMask = 1'b0;
+		8'h4b: oMask = 1'b0;
+		8'h4c: oMask = 1'b0;
+		8'h4d: oMask = 1'b0;
+		8'h4e: oMask = 1'b0;
+		8'h4f: oMask = 1'b0;
 
-        // Fila 0x5
-		0x50: oMask = 1'b0;
-		0x51: oMask = 1'b0; 
-		0x52: oMask = 1'b0; 
-		0x53: oMask = 1'b0; 
-		0x54: oMask = 1'b0; 
-		0x55: oMask = 1'b0; 
-		0x56: oMask = 1'b0; 
-		0x57: oMask = 1'b0; 
-		0x58: oMask = 1'b0; 
-		0x59: oMask = 1'b0; 
-        0x5a: oMask = 1'b0;
-        0x5b: oMask = 1'b0;
-        0x5c: oMask = 1'b0;
-        0x5d: oMask = 1'b0;
-        0x5e: oMask = 1'b0;
-        0x5f: oMask = 1'b0;
+		// Fila 8'h5
+		8'h50: oMask = 1'b0;
+		8'h51: oMask = 1'b0; 
+		8'h52: oMask = 1'b0; 
+		8'h53: oMask = 1'b0; 
+		8'h54: oMask = 1'b0; 
+		8'h55: oMask = 1'b0; 
+		8'h56: oMask = 1'b0; 
+		8'h57: oMask = 1'b0; 
+		8'h58: oMask = 1'b0; 
+		8'h59: oMask = 1'b0; 
+		8'h5a: oMask = 1'b0;
+		8'h5b: oMask = 1'b0;
+		8'h5c: oMask = 1'b0;
+		8'h5d: oMask = 1'b0;
+		8'h5e: oMask = 1'b0;
+		8'h5f: oMask = 1'b0;
 
-        // Fila 0x6
-		0x60: oMask = 1'b0;
-		0x61: oMask = 1'b0; 
-		0x62: oMask = 1'b0; 
-		0x63: oMask = 1'b0; 
-		0x64: oMask = 1'b0; 
-		0x65: oMask = 1'b0; 
-		0x66: oMask = 1'b0; 
-		0x67: oMask = 1'b0; 
-		0x68: oMask = 1'b0; 
-		0x69: oMask = 1'b0; 
-        0x6a: oMask = 1'b0;
-        0x6b: oMask = 1'b0;
-        0x6c: oMask = 1'b0;
-        0x6d: oMask = 1'b0;
-        0x6e: oMask = 1'b0;
-        0x6f: oMask = 1'b0;
+		// Fila 8'h6
+		8'h60: oMask = 1'b0;
+		8'h61: oMask = 1'b0; 
+		8'h62: oMask = 1'b0; 
+		8'h63: oMask = 1'b0; 
+		8'h64: oMask = 1'b0; 
+		8'h65: oMask = 1'b0; 
+		8'h66: oMask = 1'b0; 
+		8'h67: oMask = 1'b0; 
+		8'h68: oMask = 1'b0; 
+		8'h69: oMask = 1'b0; 
+		8'h6a: oMask = 1'b0;
+		8'h6b: oMask = 1'b0;
+		8'h6c: oMask = 1'b0;
+		8'h6d: oMask = 1'b0;
+		8'h6e: oMask = 1'b0;
+		8'h6f: oMask = 1'b0;
 
-        // Fila 0x7
-		0x70: oMask = 1'b0;
-		0x71: oMask = 1'b0; 
-		0x72: oMask = 1'b0; 
-		0x73: oMask = 1'b0; 
-		0x74: oMask = 1'b0; 
-		0x75: oMask = 1'b0; 
-		0x76: oMask = 1'b0; 
-		0x77: oMask = 1'b0; 
-		0x78: oMask = 1'b0; 
-		0x79: oMask = 1'b0; 
-        0x7a: oMask = 1'b0;
-        0x7b: oMask = 1'b0;
-        0x7c: oMask = 1'b0;
-        0x7d: oMask = 1'b0;
-        0x7e: oMask = 1'b0;
-        0x7f: oMask = 1'b0;
+		// Fila 8'h7
+		8'h70: oMask = 1'b0;
+		8'h71: oMask = 1'b0; 
+		8'h72: oMask = 1'b0; 
+		8'h73: oMask = 1'b0; 
+		8'h74: oMask = 1'b0; 
+		8'h75: oMask = 1'b0; 
+		8'h76: oMask = 1'b0; 
+		8'h77: oMask = 1'b0; 
+		8'h78: oMask = 1'b0; 
+		8'h79: oMask = 1'b0; 
+		8'h7a: oMask = 1'b0;
+		8'h7b: oMask = 1'b0;
+		8'h7c: oMask = 1'b0;
+		8'h7d: oMask = 1'b0;
+		8'h7e: oMask = 1'b0;
+		8'h7f: oMask = 1'b0;
 
-        // Fila 0x8
-		0x80: oMask = 1'b0;
-		0x81: oMask = 1'b0; 
-		0x82: oMask = 1'b0; 
-		0x83: oMask = 1'b0; 
-		0x84: oMask = 1'b0; 
-		0x85: oMask = 1'b0; 
-		0x86: oMask = 1'b0; 
-		0x87: oMask = 1'b0; 
-		0x88: oMask = 1'b0; 
-		0x89: oMask = 1'b0; 
-        0x8a: oMask = 1'b0;
-        0x8b: oMask = 1'b0;
-        0x8c: oMask = 1'b0;
-        0x8d: oMask = 1'b0;
-        0x8e: oMask = 1'b0;
-        0x8f: oMask = 1'b0;
+		// Fila 8'h8
+		8'h80: oMask = 1'b0;
+		8'h81: oMask = 1'b0; 
+		8'h82: oMask = 1'b0; 
+		8'h83: oMask = 1'b0; 
+		8'h84: oMask = 1'b0; 
+		8'h85: oMask = 1'b0; 
+		8'h86: oMask = 1'b0; 
+		8'h87: oMask = 1'b0; 
+		8'h88: oMask = 1'b0; 
+		8'h89: oMask = 1'b0; 
+		8'h8a: oMask = 1'b0;
+		8'h8b: oMask = 1'b0;
+		8'h8c: oMask = 1'b0;
+		8'h8d: oMask = 1'b0;
+		8'h8e: oMask = 1'b0;
+		8'h8f: oMask = 1'b0;
 
-        // Fila 0x9
-		0x90: oMask = 1'b0;
-		0x91: oMask = 1'b0; 
-		0x92: oMask = 1'b0; 
-		0x93: oMask = 1'b0; 
-		0x94: oMask = 1'b0; 
-		0x95: oMask = 1'b0; 
-		0x96: oMask = 1'b0; 
-		0x97: oMask = 1'b0; 
-		0x98: oMask = 1'b0; 
-		0x99: oMask = 1'b0; 
-        0x9a: oMask = 1'b0;
-        0x9b: oMask = 1'b0;
-        0x9c: oMask = 1'b0;
-        0x9d: oMask = 1'b0;
-        0x9e: oMask = 1'b0;
-        0x9f: oMask = 1'b0;
+		// Fila 8'h9
+		8'h90: oMask = 1'b0;
+		8'h91: oMask = 1'b0; 
+		8'h92: oMask = 1'b0; 
+		8'h93: oMask = 1'b0; 
+		8'h94: oMask = 1'b0; 
+		8'h95: oMask = 1'b0; 
+		8'h96: oMask = 1'b0; 
+		8'h97: oMask = 1'b0; 
+		8'h98: oMask = 1'b0; 
+		8'h99: oMask = 1'b0; 
+		8'h9a: oMask = 1'b0;
+		8'h9b: oMask = 1'b0;
+		8'h9c: oMask = 1'b0;
+		8'h9d: oMask = 1'b0;
+		8'h9e: oMask = 1'b0;
+		8'h9f: oMask = 1'b0;
 
-        // Fila 0xa
-		0xa0: oMask = 1'b0;
-		0xa1: oMask = 1'b0; 
-		0xa2: oMask = 1'b0; 
-		0xa3: oMask = 1'b0; 
-		0xa4: oMask = 1'b0; 
-		0xa5: oMask = 1'b0; 
-		0xa6: oMask = 1'b0; 
-		0xa7: oMask = 1'b0; 
-		0xa8: oMask = 1'b0; 
-		0xa9: oMask = 1'b0; 
-        0xaa: oMask = 1'b0;
-        0xab: oMask = 1'b0;
-        0xac: oMask = 1'b0;
-        0xad: oMask = 1'b0;
-        0xae: oMask = 1'b0;
-        0xaf: oMask = 1'b0;
+		// Fila 8'ha
+		8'ha0: oMask = 1'b0;
+		8'ha1: oMask = 1'b0; 
+		8'ha2: oMask = 1'b0; 
+		8'ha3: oMask = 1'b0; 
+		8'ha4: oMask = 1'b0; 
+		8'ha5: oMask = 1'b0; 
+		8'ha6: oMask = 1'b0; 
+		8'ha7: oMask = 1'b0; 
+		8'ha8: oMask = 1'b0; 
+		8'ha9: oMask = 1'b0; 
+		8'haa: oMask = 1'b0;
+		8'hab: oMask = 1'b0;
+		8'hac: oMask = 1'b0;
+		8'had: oMask = 1'b0;
+		8'hae: oMask = 1'b0;
+		8'haf: oMask = 1'b0;
 
-        // Fila 0xb
-		0xb0: oMask = 1'b0;
-		0xb1: oMask = 1'b0; 
-		0xb2: oMask = 1'b0; 
-		0xb3: oMask = 1'b0; 
-		0xb4: oMask = 1'b0; 
-		0xb5: oMask = 1'b0; 
-		0xb6: oMask = 1'b0; 
-		0xb7: oMask = 1'b0; 
-		0xb8: oMask = 1'b0; 
-		0xb9: oMask = 1'b0; 
-        0xba: oMask = 1'b0;
-        0xbb: oMask = 1'b0;
-        0xbc: oMask = 1'b0;
-        0xbd: oMask = 1'b0;
-        0xbe: oMask = 1'b0;
-        0xbf: oMask = 1'b0;
+		// Fila 8'hb
+		8'hb0: oMask = 1'b0;
+		8'hb1: oMask = 1'b0; 
+		8'hb2: oMask = 1'b0; 
+		8'hb3: oMask = 1'b0; 
+		8'hb4: oMask = 1'b0; 
+		8'hb5: oMask = 1'b0; 
+		8'hb6: oMask = 1'b0; 
+		8'hb7: oMask = 1'b0; 
+		8'hb8: oMask = 1'b0; 
+		8'hb9: oMask = 1'b0; 
+		8'hba: oMask = 1'b0;
+		8'hbb: oMask = 1'b0;
+		8'hbc: oMask = 1'b0;
+		8'hbd: oMask = 1'b0;
+		8'hbe: oMask = 1'b0;
+		8'hbf: oMask = 1'b0;
 
-        // Fila 0xc
-		0xc0: oMask = 1'b0;
-		0xc1: oMask = 1'b0; 
-		0xc2: oMask = 1'b0; 
-		0xc3: oMask = 1'b0; 
-		0xc4: oMask = 1'b0; 
-		0xc5: oMask = 1'b0; 
-		0xc6: oMask = 1'b0; 
-		0xc7: oMask = 1'b0; 
-		0xc8: oMask = 1'b0; 
-		0xc9: oMask = 1'b0; 
-        0xca: oMask = 1'b0;
-        0xcb: oMask = 1'b0;
-        0xcc: oMask = 1'b0;
-        0xcd: oMask = 1'b0;
-        0xce: oMask = 1'b0;
-        0xcf: oMask = 1'b0;
+		// Fila 8'hc
+		8'hc0: oMask = 1'b0;
+		8'hc1: oMask = 1'b0; 
+		8'hc2: oMask = 1'b0; 
+		8'hc3: oMask = 1'b0; 
+		8'hc4: oMask = 1'b0; 
+		8'hc5: oMask = 1'b0; 
+		8'hc6: oMask = 1'b0; 
+		8'hc7: oMask = 1'b0; 
+		8'hc8: oMask = 1'b0; 
+		8'hc9: oMask = 1'b0; 
+		8'hca: oMask = 1'b0;
+		8'hcb: oMask = 1'b0;
+		8'hcc: oMask = 1'b0;
+		8'hcd: oMask = 1'b0;
+		8'hce: oMask = 1'b0;
+		8'hcf: oMask = 1'b0;
 
-        // Fila 0xd
-		0xd0: oMask = 1'b1;
-		0xd1: oMask = 1'b1; 
-		0xd2: oMask = 1'b1; 
-		0xd3: oMask = 1'b0; 
-		0xd4: oMask = 1'b0; 
-		0xd5: oMask = 1'b0; 
-		0xd6: oMask = 1'b0; 
-		0xd7: oMask = 1'b0; 
-		0xd8: oMask = 1'b0; 
-		0xd9: oMask = 1'b0; 
-        0xda: oMask = 1'b0;
-        0xdb: oMask = 1'b0;
-        0xdc: oMask = 1'b0;
-        0xdd: oMask = 1'b1;
-        0xde: oMask = 1'b1;
-        0xdf: oMask = 1'b1;
+		// Fila 8'hd
+		8'hd0: oMask = 1'b1;
+		8'hd1: oMask = 1'b1; 
+		8'hd2: oMask = 1'b1; 
+		8'hd3: oMask = 1'b0; 
+		8'hd4: oMask = 1'b0; 
+		8'hd5: oMask = 1'b0; 
+		8'hd6: oMask = 1'b0; 
+		8'hd7: oMask = 1'b0; 
+		8'hd8: oMask = 1'b0; 
+		8'hd9: oMask = 1'b0; 
+		8'hda: oMask = 1'b0;
+		8'hdb: oMask = 1'b0;
+		8'hdc: oMask = 1'b0;
+		8'hdd: oMask = 1'b1;
+		8'hde: oMask = 1'b1;
+		8'hdf: oMask = 1'b1;
 
-        // Fila 0xe
-		0xe0: oMask = 1'b1;
-		0xe1: oMask = 1'b1; 
-		0xe2: oMask = 1'b1; 
-		0xe3: oMask = 1'b0; 
-		0xe4: oMask = 1'b0; 
-		0xe5: oMask = 1'b0; 
-		0xe6: oMask = 1'b0; 
-		0xe7: oMask = 1'b0; 
-		0xe8: oMask = 1'b0; 
-		0xe9: oMask = 1'b0; 
-        0xea: oMask = 1'b0;
-        0xeb: oMask = 1'b0;
-        0xec: oMask = 1'b0;
-        0xed: oMask = 1'b1;
-        0xee: oMask = 1'b1;
-        0xef: oMask = 1'b1;
+		// Fila 8'he
+		8'he0: oMask = 1'b1;
+		8'he1: oMask = 1'b1; 
+		8'he2: oMask = 1'b1; 
+		8'he3: oMask = 1'b0; 
+		8'he4: oMask = 1'b0; 
+		8'he5: oMask = 1'b0; 
+		8'he6: oMask = 1'b0; 
+		8'he7: oMask = 1'b0; 
+		8'he8: oMask = 1'b0; 
+		8'he9: oMask = 1'b0; 
+		8'hea: oMask = 1'b0;
+		8'heb: oMask = 1'b0;
+		8'hec: oMask = 1'b0;
+		8'hed: oMask = 1'b1;
+		8'hee: oMask = 1'b1;
+		8'hef: oMask = 1'b1;
 
-        // Fila 0xf
-		0xf0: oMask = 1'b1;
-		0xf1: oMask = 1'b1; 
-		0xf2: oMask = 1'b1; 
-		0xf3: oMask = 1'b0; 
-		0xf4: oMask = 1'b0; 
-		0xf5: oMask = 1'b0; 
-		0xf6: oMask = 1'b0; 
-		0xf7: oMask = 1'b0; 
-		0xf8: oMask = 1'b0; 
-		0xf9: oMask = 1'b0; 
-        0xfa: oMask = 1'b0;
-        0xfb: oMask = 1'b0;
-        0xfc: oMask = 1'b0;
-        0xfd: oMask = 1'b1;
-        0xfe: oMask = 1'b1;
-        0xff: oMask = 1'b1;
+		// Fila 8'hf
+		8'hf0: oMask = 1'b1;
+		8'hf1: oMask = 1'b1; 
+		8'hf2: oMask = 1'b1; 
+		8'hf3: oMask = 1'b0; 
+		8'hf4: oMask = 1'b0; 
+		8'hf5: oMask = 1'b0; 
+		8'hf6: oMask = 1'b0; 
+		8'hf7: oMask = 1'b0; 
+		8'hf8: oMask = 1'b0; 
+		8'hf9: oMask = 1'b0; 
+		8'hfa: oMask = 1'b0;
+		8'hfb: oMask = 1'b0;
+		8'hfc: oMask = 1'b0;
+		8'hfd: oMask = 1'b1;
+		8'hfe: oMask = 1'b1;
+		8'hff: oMask = 1'b1;
 	
 	default:
-		oInstruction = { `LED ,  24'b10101010 };		//NOP
+		oMask = 1'b0;
 	endcase	
 end
 	
