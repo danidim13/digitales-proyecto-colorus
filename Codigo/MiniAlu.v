@@ -25,7 +25,7 @@ wire [15:0] wSourceData0,wSourceData1,c,wSourceData1_RAM,wSourceData0_RAM,wResul
 wire wHazard0, wHazard1, wWriteEnablePrev, wIsImmediate,wPushAddr;
 wire [9:0] wColumnCount;
 wire [9:0] wRowCount; 
-wire [2:0] wColorToMemory,iPixel;
+wire [2:0] wColorToMemory,iPixel,wColorBackground;
 //wire wVGA_RED,wVGA_GREEN,wVGA_BLUE;
 
 ROM InstructionRom  
@@ -208,7 +208,23 @@ RAM_SINGLE_READ_PORT # (3,10,1023) VideoMemory
 .iDataIn( wColorToMemory  ),
 .oDataOut( iPixel )
 );
-
+//////////////////////////////
+	Sprite16x16 sprite0 (
+		.Clock(Clock), 
+		.Reset(Reset), 
+		.iColumnCount(wColumnCount), 
+		.iRowCount(wRowCount), 
+		.iEnable(1'b1), 
+		.iColorBack(wColorBackground), 
+		.iChangePos(1'b1), 
+		.iAbsolute(1'b1), 
+		.iSetX(5'b00010), 
+		.iSetY(5'b00010), 
+		.iNewColor(3'b111), 
+		.iSetColor(1'b1), 
+		.oRGB({VGA_RED,VGA_GREEN,VGA_BLUE})
+	);
+//////////////////////////////
 
 always @ ( * ) 
 begin 
