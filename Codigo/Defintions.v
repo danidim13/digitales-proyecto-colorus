@@ -28,6 +28,11 @@
 `define R5 8'd5
 `define R6 8'd6
 `define R7 8'd7
+`define RBG 8'd8
+`define RC0 8'd9
+`define RC1 8'd10
+`define RC2 8'd11
+`define RC3 8'd12
 
 `define BLACK 	3'b000
 `define BLUE	3'b001
