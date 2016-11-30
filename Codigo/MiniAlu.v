@@ -36,7 +36,7 @@ ROM InstructionRom
 	.oInstruction( wInstruction )
 );
 
-RAM_DUAL_READ_PORT DataRam
+RAM_DUAL_READ_PORT DataRam # (16,8,16)
 (
 	.Clock(         Clock        ),
 	.iWriteEnable(  rWriteEnable ),
