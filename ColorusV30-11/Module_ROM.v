@@ -20,10 +20,10 @@ begin
 		
 
 // Loop green
-		3: oInstruction = { `STO ,`R3, 16'h00ff };
+		3: oInstruction = { `STO ,`R3, 16'h03ff };
 		4: oInstruction = { `STO ,`R4, 13'b0,`GREEN};
 		5: oInstruction = { `CALL ,`SUB_VGA, 16'h0000 };
-// Loop red		
+/*/ Loop red		
 		6: oInstruction = { `STO ,`R3, 16'h01ff };
 		7: oInstruction = { `STO ,`R4, 13'b0,`RED};
 		8: oInstruction = { `CALL ,`SUB_VGA, 16'h0000 };
@@ -35,7 +35,7 @@ begin
 // Loop blue		
 		12: oInstruction = { `STO ,`R3, 16'h03ff };
 		13: oInstruction = { `STO ,`R4, 13'b0,`BLUE};
-		14: oInstruction = { `CALL ,`SUB_VGA, 16'h0000 };
+		14: oInstruction = { `CALL ,`SUB_VGA, 16'h0000 };*/
 
 // Poner color al sprite
 		15: oInstruction = { `STO , `R5, 13'd0, `WHITE};

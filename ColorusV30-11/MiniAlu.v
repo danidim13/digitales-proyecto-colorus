@@ -244,10 +244,10 @@ Sprite16x16 sprite (
 		.iRowCount(wRowCount), 
 		.iEnable(1'b1), 
 		.iColorBack(ColorBG), 
-		.iChangePos(rEnablePos), 
+		.iChangePos(1'b1), 
 		.iAbsolute(1'b1), 
-		.iSetX(wSetX), 
-		.iSetY(wSetY),  
+		.iSetX(5'b00001), 
+		.iSetY(5'b00001),  
 		.iNewColor(wColorActual), 
 		.iSetColor(rSetColor), 
 		.oRGB({VGA_RED,VGA_GREEN,VGA_BLUE}),
@@ -432,7 +432,7 @@ begin
 		`MOVSP :
 	begin
 		rEnablePos <= 1'b1;
-		rEnableAbs <= 1'b0;
+		rEnableAbs <= 1'b1;
 		rFFLedEN     <= 1'b0;
 		rWriteEnable <= 1'b0;
 		rResult      <= 0;
@@ -441,7 +441,7 @@ begin
 		rCall        <= 1'b0;
 		rVideoMemWrite <= 1'b0;
 
-		rSetColor    <= 1'b1;
+		rSetColor    <= 1'b0;
 
 	end	
 		`READPOSX :
