@@ -51,7 +51,7 @@ begin
 		10: oInstruction = { `CALL ,`SUB_PALITO, 16'b0   };
 
 		11: oInstruction = { `STO , `R1, 6'd0, 5'd0,5'd1}; // Carga y=0,x=1 en R1
-		12: oInstruction = { `STO , `R2, 16'd1000};// carga 1000 en R2
+		12: oInstruction = { `STO , `R2, 16'd60000};// carga 1000 en R2
 		13: oInstruction = { `ADD, `R3, `R0, `R0}; // Carga 0 en R3
 		14: oInstruction = { `STO, `R4, 16'd1};    // Carga 1 en R4
 
@@ -73,8 +73,8 @@ begin
 		
 		// , R2 debe ser 1
 		//Y R7 debe ser el valor de una columna 
-		39: oInstruction = { `STO ,`R1, 16'h001e };
-		40: oInstruction = { `STO ,`R3, 16'h001f };
+		39: oInstruction = { `STO ,`R1, 16'h0013};
+		40: oInstruction = { `STO ,`R3, 16'h0013 };
 		41: oInstruction = { `STO ,`R4, 13'b0,`CYAN};
 		42: oInstruction = { `STO ,`R6, 16'h0020};
 		43: oInstruction = { `STO ,`R0, 16'h0000};
