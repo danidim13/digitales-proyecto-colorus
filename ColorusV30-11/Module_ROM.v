@@ -37,13 +37,18 @@ begin
 		13: oInstruction = { `STO ,`R4, 13'b0,`BLUE};
 		14: oInstruction = { `CALL ,`SUB_VGA, 16'h0000 };*/
 
+	   //Poner posicion del sprite
+		6: oInstruction = { `STO , `R6, 6'd0, 5'd2, 5'd8};
+		7: oInstruction = { `MOVSP , 8'd0, `R6, 8'd0};
+
+
 // Poner color al sprite
-		15: oInstruction = { `STO , `R5, 13'd0, `WHITE};
-		16: oInstruction = { `CHCOLOR , 8'd0,`R5, 8'd0};
+		8: oInstruction = { `STO , `R5, 13'd0, `WHITE};
+		9: oInstruction = { `CHCOLOR , 8'd0,`R5, 8'd0};
 
 		// Esperar
-		17: oInstruction = { `NOP , 24'd4000      };
-		18: oInstruction = { `JMP , 8'd17, 16'b0   };
+		10: oInstruction = { `NOP , 24'd4000      };
+		11: oInstruction = { `JMP , 8'd10, 16'b0   };
 
 // Subrutina que escribe el color en R4 a las posiciones de
 // la memoria de video [R1 - R3], R2 debe ser 1
@@ -51,7 +56,7 @@ begin
 		33: oInstruction = { `ADD ,`R1,`R1,`R2}; 
 		34: oInstruction = { `BLE , 8'd32,`R1,`R3  };
 		35: oInstruction = { `RET , 24'd0 };
-		36: oInstruction = { `RET , 24'd0 };
+		36: oInstruction = { `NOP , 24'd4000      };
 
 /*
 	0: oInstruction = { `NOP ,24'd4000    };
