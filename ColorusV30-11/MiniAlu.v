@@ -235,8 +235,8 @@ RAM_SINGLE_READ_PORT # (3,10,1023) VideoMemory
 .iDataIn( wColorToMemory  ),
 .oDataOut( iPixel )
 );
-
-
+ 
+wire [9:0] outPutPosX;
 Sprite16x16 uut (
 		.Clock(Clock), 
 		.Reset(Reset), 
@@ -250,7 +250,8 @@ Sprite16x16 uut (
 		.iSetY(wSetY), 
 		.iNewColor(wColorActual), 
 		.iSetColor(rSetColor), 
-		.oRGB({VGA_RED,VGA_GREEN,VGA_BLUE})
+		.oRGB({VGA_RED,VGA_GREEN,VGA_BLUE}),
+		.oPosX(outPutPosX)
 	);
 
 
@@ -442,8 +443,21 @@ begin
 
 		rSetColor    <= 1'b1;
 
-	end
+	end	
+		`READPOSX :
+	begin
+		rEnablePos <= 1'b0;
+		rEnableAbs <= 1'b0;
+		rSetColor    <= 1'b0;
+		rFFLedEN     <= 1'b0;
+		rWriteEnable <= 1'b1;
+		rBranchTaken <= 1'b0;
+		rResult      <= {6'b0, outPutPosX};
+		rReturn      <= 1'b0;
+		rCall        <= 1'b0;
+		rVideoMemWrite <= 1'b0;
 
+	end
 
 	//-------------------------------------
 	default:

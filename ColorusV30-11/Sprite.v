@@ -17,16 +17,17 @@ module Sprite16x16
 	input wire [4:0] iSetY,
 	input wire [2:0] iNewColor,
 	input wire iSetColor,
-	output wire [2:0] oRGB
-);
+	output wire [2:0] oRGB,
+	output wire [9:0] oPosX
+ );
 
-wire [9:0] wPosX, wPosY, wNextPosX, wNextPosY;
+wire [9:0] wPosY, wNextPosX, wNextPosY;
 wire [2:0] wColor;
 wire [9:0] wMaskX, wMaskY;
 wire [7:0] wMaskAddress;
 wire wMask;
 
-assign wNextPosX = iAbsolute ? {iSetX,5'b0} : (wPosX + {{ 5{iSetX[4]}}, iSetX}); 
+assign wNextPosX = iAbsolute ? {iSetX,5'b0} : (oPosX + {{ 5{iSetX[4]}}, iSetX}); 
 assign wNextPosY = iAbsolute ? {iSetY,5'b0} : (wPosY + {{ 5{iSetY[4]}}, iSetY}); 
 
 
@@ -36,7 +37,7 @@ FFD_POSEDGE_SYNCRONOUS_RESET # (10) POSX_FF
 	.Reset(Reset), 
 	.Enable(iChangePos), 
 	.D( wNextPosX), 
-	.Q( wPosX ) 
+	.Q( oPosX ) 
 );
 
 FFD_POSEDGE_SYNCRONOUS_RESET # (10) POSY_FF
@@ -57,7 +58,7 @@ FFD_POSEDGE_SYNCRONOUS_RESET # (3) COLOR_FF
 	.Q( wColor ) 
 );
 
-assign wMaskX = iColumnCount - wPosX;
+assign wMaskX = iColumnCount - oPosX;
 assign wMaskY = iRowCount - wPosY;
 assign wMaskAddress = {wMaskY[3:0], wMaskX[3:0]};
 
@@ -73,7 +74,7 @@ Sprite_Controller # (16, 16) Controlador
 	.iRowCount(iRowCount),
 	.imask(wMask),
 	.iEnable(iEnable),
-	.iPosX(wPosX),
+	.iPosX(oPosX),
 	.iPosY(wPosY),
 	.iColorSprite(wColor),
 	.iColorBack(iColorBack),
