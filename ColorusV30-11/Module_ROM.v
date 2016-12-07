@@ -44,14 +44,25 @@ begin
 
 
 // Poner color al sprite
-		8: oInstruction = { `STO , `R5, 13'd0, `WHITE};
+		8: oInstruction = { `STO , `R5, 13'd0, `RED};
 		9: oInstruction = { `CHCOLOR , 8'd0,`R5, 8'd0};
 
-		// Esperar
-		
+		// Pintar palito
 		10: oInstruction = { `CALL ,`SUB_PALITO, 16'b0   };
-		11: oInstruction = { `NOP , 24'd4000      };
-		12: oInstruction = { `JMP , 8'd11, 16'b0   };
+
+		11: oInstruction = { `STO , `R1, 6'd0, 5'd0,5'd1}; // Carga y=0,x=1 en R1
+		12: oInstruction = { `STO , `R2, 16'd1000};// carga 1000 en R2
+		13: oInstruction = { `ADD, `R3, `R0, `R0}; // Carga 0 en R3
+		14: oInstruction = { `STO, `R4, 16'd1};    // Carga 1 en R4
+
+		15: oInstruction = { `ADD , `R3, `R3, `R4 }; // R3 = R3 + 1  (R4)
+		16: oInstruction = { `BLE , 8'd15,`R3, `R2 }; // Branch if R3 <= 1000 (R2)
+
+		17: oInstruction = { `MOVSPR , 8'd0, `R1, 8'd0}; // Posicion sprite += R1
+
+		// Esperar
+		18: oInstruction = { `NOP , 24'd4000      };
+		19: oInstruction = { `JMP , 8'd13, 16'b0   };
 // Subrutina que escribe el color en R4 a las posiciones de
 // la memoria de video [R1 - R3], R2 debe ser 1
 		32: oInstruction = { `WVM , 8'd0,`R4,`R1};
@@ -62,8 +73,8 @@ begin
 		
 		// , R2 debe ser 1
 		//Y R7 debe ser el valor de una columna 
-		39: oInstruction = { `STO ,`R1, 16'h0002 };
-		40: oInstruction = { `STO ,`R3, 16'h0003 };
+		39: oInstruction = { `STO ,`R1, 16'h001e };
+		40: oInstruction = { `STO ,`R3, 16'h001f };
 		41: oInstruction = { `STO ,`R4, 13'b0,`CYAN};
 		42: oInstruction = { `STO ,`R6, 16'h0020};
 		43: oInstruction = { `STO ,`R0, 16'h0000};
