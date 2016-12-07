@@ -81,8 +81,8 @@ begin
 		// Subrutina que hace el palito
 		// , R2 debe ser 1
 		//Y R7 debe ser el valor de una columna 
-		39: oInstruction = { `STO ,`R1, 16'h001e };
-		40: oInstruction = { `STO ,`R3, 16'h001f };
+		39: oInstruction = { `STO ,`R1, 16'h0013};
+		40: oInstruction = { `STO ,`R3, 16'h0013 };
 		41: oInstruction = { `STO ,`R4, 13'b0,`CYAN};
 		42: oInstruction = { `STO ,`R6, 16'h0020};
 		43: oInstruction = { `STO ,`R0, 16'h0000};

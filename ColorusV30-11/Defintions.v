@@ -23,6 +23,8 @@
 `define MOVSPR 4'd4
 `define READPOSX 4'd13
 
+`define W 8'h1D
+`define A 8'h1C
 
 
 `define R0 8'd0
