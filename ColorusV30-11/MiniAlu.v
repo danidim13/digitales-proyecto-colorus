@@ -271,7 +271,6 @@ begin
 		rReturn      <= 1'b0;
 		rCall        <= 1'b0;
 		rVideoMemWrite <= 1'b0;
-		rSetColor    <= 1'b0;
 		 
 	end
 	//-------------------------------------
@@ -287,7 +286,6 @@ begin
 		rReturn      <= 1'b0;
 		rCall        <= 1'b0;
 		rVideoMemWrite <= 1'b0;
-		rSetColor    <= 1'b0;
 		 
 	end
 	//-------------------------------------
@@ -303,7 +301,6 @@ begin
 		rReturn      <= 1'b0;
 		rCall        <= 1'b0;
 		rVideoMemWrite <= 1'b0;
-		rSetColor    <= 1'b0;
 		 
 	end
 	//-------------------------------------
@@ -319,7 +316,6 @@ begin
 		rReturn      <= 1'b0;
 		rCall        <= 1'b0;
 		rVideoMemWrite <= 1'b0;
-		rSetColor    <= 1'b0;
 		 
 	end
 	//-------------------------------------
@@ -338,7 +334,7 @@ begin
 		rReturn      <= 1'b0;
 		rCall        <= 1'b0;
 		rVideoMemWrite <= 1'b0;
-		rSetColor    <= 1'b0;
+		
 
 	end
 	//-------------------------------------
@@ -353,6 +349,7 @@ begin
 		rReturn      <= 1'b0;
 		rCall        <= 1'b0;
 		rVideoMemWrite <= 1'b0;
+		 
 		rSetColor    <= 1'b0;
 	end
 	//-------------------------------------
@@ -412,6 +409,7 @@ begin
 		rReturn      <= 1'b0;
 		rCall        <= 1'b0;
 		rVideoMemWrite <= 1'b1;
+		
 		rSetColor    <= 1'b0;
 
 	end
@@ -473,7 +471,6 @@ begin
 		rReturn      <= 1'b0;
 		rCall        <= 1'b0;
 		rVideoMemWrite <= 1'b0;
-		rSetColor    <= 1'b0;
 
 	end
 
