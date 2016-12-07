@@ -3,7 +3,7 @@
 
 `define LOOP1 8'd8
 `define LOOP2 8'd5
-`define SUB_VGA 8'd17
+`define SUB_VGA 8'd32
 module ROM
 (
 	input  wire[15:0]  		iAddress,
@@ -37,16 +37,22 @@ begin
 		13: oInstruction = { `STO ,`R4, 13'b0,`BLUE};
 		14: oInstruction = { `CALL ,`SUB_VGA, 16'h0000 };
 
-		15: oInstruction = { `NOP , 24'd4000      };
-		16: oInstruction = { `JMP , 8'd15, 16'b0   };
+// Poner color al sprite
+		15: oInstruction = { `STO , `R5, 13'd0, `WHITE};
+		16: oInstruction = { `CHCOLOR , 8'd0,`R5, 8'd0};
+
+		// Esperar
+		17: oInstruction = { `NOP , 24'd4000      };
+		18: oInstruction = { `JMP , 8'd15, 18'b0   };
 
 // Subrutina que escribe el color en R4 a las posiciones de
 // la memoria de video [R1 - R3], R2 debe ser 1
-		17: oInstruction = { `WVM , 8'd0,`R4,`R1};
-		18: oInstruction = { `ADD ,`R1,`R1,`R2}; 
-		19: oInstruction = { `BLE , 8'd17,`R1,`R3  };
-		20: oInstruction = { `RET , 24'd0 };
-		21: oInstruction = { `RET , 24'd0 };
+		32: oInstruction = { `WVM , 8'd0,`R4,`R1};
+		33: oInstruction = { `ADD ,`R1,`R1,`R2}; 
+		34: oInstruction = { `BLE , 8'd17,`R1,`R3  };
+		35: oInstruction = { `RET , 24'd0 };
+		36: oInstruction = { `RET , 24'd0 };
+
 /*
 	0: oInstruction = { `NOP ,24'd4000    };
 	1: oInstruction = { `STO , `R7,16'b0001 };
