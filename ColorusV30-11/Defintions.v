@@ -19,7 +19,7 @@
 `define RET   4'd9	// 1001
 `define WVM  4'd10	// 1001
 `define CHCOLOR  4'd11	// 1001
-`define MOVESP 4'd12	
+`define MOVSP 4'd12
 
 `define R0 8'd0
 `define R1 8'd1

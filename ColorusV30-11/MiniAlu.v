@@ -1,3 +1,4 @@
+
 `timescale 1ns / 1ps
 `include "Defintions.v"
 
@@ -18,7 +19,7 @@ wire [15:0]  wIP,wIP_temp,wIP_return;
 reg         rWriteEnable,rBranchTaken,rReturn,rCall,rVideoMemWrite;
 wire [27:0] wInstruction;
 wire [3:0]  wOperation;
-reg  [15:0]  rResult;
+reg  [15:0]   rResult;
 wire [7:0]  wSourceAddr0,wSourceAddr1,wDestination, wDestinationPrev;
 wire [15:0] wSourceData0,wSourceData1,c,wSourceData1_RAM,wSourceData0_RAM,wResultPrev,wIPInitialValue,wDestinationJump,wImmediateValue;
 wire wHazard0, wHazard1, wWriteEnablePrev, wIsImmediate,wPushAddr;
@@ -26,8 +27,7 @@ wire [9:0] wColumnCount;
 wire [9:0] wRowCount;
 wire [2:0] wColorToMemory,iPixel;
 wire [2:0] wColorActual;
-reg 		rChangePos;
-reg [4:0] rSetX;
+ 
 //wire wVGA_RED,wVGA_GREEN,wVGA_BLUE;
 
 ROM InstructionRom
@@ -115,15 +115,6 @@ FFD_POSEDGE_SYNCRONOUS_RESET # ( 3 ) FF_COLOR
 	.Enable( rColorEnable ),
 	.D( wSourceData1[2:0] ),
 	.Q(   wColorActual  )
-);
-
-FFD_POSEDGE_SYNCRONOUS_RESET # ( 5 ) FF_POSX
-(
-	.Clock(Clock),
-	.Reset(Reset),
-	.Enable( rChangePos ),
-	.D( wSourceData1[4:0] ),
-	.Q( rSetX )
 );
 
 assign wImmediateValue = {wSourceAddr1,wSourceAddr0};
@@ -239,9 +230,9 @@ Sprite16x16 uut (
 		.iRowCount(wRowCount), 
 		.iEnable(1'b1), 
 		.iColorBack(ColorBG), 
-		.iChangePos(rChangePos), 
+		.iChangePos(1'b1), 
 		.iAbsolute(1'b0), 
-		.iSetX(rSetX), 
+		.iSetX(5'b00001), 
 		.iSetY(5'b00001), 
 		.iNewColor(wColorActual), 
 		.iSetColor(rSetColor), 
@@ -389,21 +380,15 @@ begin
 
 	end
 	
-	`CHCOLOR :
+		`CHCOLOR :
 	begin
 		rFFLedEN     <= 1'b0;
 		rColorEnable <= 1'b1;
 		rSetColor    <= 1'b1;
+
 	end
 
-	`MOVESP :
-	begin
-		rFFLedEN     <= 1'b0;
-		rColorEnable <= 1'b0;
-		rSetColor    <= 1'b0;
-		rChangePos	 <= 1'b1;
-	end
-	
+
 	//-------------------------------------
 	default:
 	begin
