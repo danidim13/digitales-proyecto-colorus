@@ -385,7 +385,13 @@ begin
 		`CHCOLOR :
 	begin
 		rFFLedEN     <= 1'b0;
-		rColorEnable <= 1'b1;
+		rWriteEnable <= 1'b0;
+		rResult      <= 0;
+		rBranchTaken <= 1'b0;
+		rReturn      <= 1'b0;
+		rCall        <= 1'b0;
+		rVideoMemWrite <= 1'b0;
+
 		rSetColor    <= 1'b1;
 
 	end
