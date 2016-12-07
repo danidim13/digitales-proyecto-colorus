@@ -4,6 +4,7 @@
 `define LOOP1 8'd8
 `define LOOP2 8'd5
 `define SUB_VGA 8'd32
+`define SUB_PALITO 8'd39
 module ROM
 (
 	input  wire[15:0]  		iAddress,
@@ -47,9 +48,10 @@ begin
 		9: oInstruction = { `CHCOLOR , 8'd0,`R5, 8'd0};
 
 		// Esperar
-		10: oInstruction = { `NOP , 24'd4000      };
-		11: oInstruction = { `JMP , 8'd10, 16'b0   };
-
+		
+		10: oInstruction = { `CALL ,`SUB_PALITO, 16'b0   };
+		11: oInstruction = { `NOP , 24'd4000      };
+		12: oInstruction = { `JMP , 8'd11, 16'b0   };
 // Subrutina que escribe el color en R4 a las posiciones de
 // la memoria de video [R1 - R3], R2 debe ser 1
 		32: oInstruction = { `WVM , 8'd0,`R4,`R1};
@@ -57,8 +59,26 @@ begin
 		34: oInstruction = { `BLE , 8'd32,`R1,`R3  };
 		35: oInstruction = { `RET , 24'd0 };
 		36: oInstruction = { `NOP , 24'd4000      };
-
-/*
+		
+		// , R2 debe ser 1
+		//Y R7 debe ser el valor de una columna 
+		39: oInstruction = { `STO ,`R1, 16'h0002 };
+		40: oInstruction = { `STO ,`R3, 16'h0004 };
+		41: oInstruction = { `STO ,`R4, 13'b0,`CYAN};
+		42: oInstruction = { `STO ,`R6, 16'h0020};
+		43: oInstruction = { `STO ,`R0, 16'h0000};
+		44: oInstruction = { `ADD ,`R7,`R1,`R0}; 
+		45: oInstruction = { `STO ,`R5, 16'd1023 };
+		
+		46: oInstruction = { `WVM , 8'd0,`R4,`R1};
+		47: oInstruction = { `ADD ,`R1,`R1,`R2}; 
+		48: oInstruction = { `BLE , 8'd46,`R1,`R3};
+		49: oInstruction = { `ADD ,`R7,`R7,`R6}; 
+		50: oInstruction = { `ADD ,`R3,`R3,`R6}; 
+		51: oInstruction = { `ADD ,`R1,`R7,`R0};
+		52: oInstruction = { `BLE , 8'd46,`R7,`R5}; 
+		53: oInstruction = { `RET , 24'd0 };
+	/*
 	0: oInstruction = { `NOP ,24'd4000    };
 	1: oInstruction = { `STO , `R7,16'b0001 };
 	2: oInstruction = { `STO ,`R3,16'h1     }; 
