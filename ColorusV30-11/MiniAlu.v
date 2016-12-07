@@ -27,7 +27,17 @@ wire [9:0] wColumnCount;
 wire [9:0] wRowCount;
 wire [2:0] wColorToMemory,iPixel;
 wire [2:0] wColorActual;
- 
+wire [4:0] wSetX  ;
+wire [4:0] wSetY ;
+assign wColorActual = wSourceData1[2:0] ; 
+assign wSetX = wSourceData1[4:0] ; 
+assign wSetY = wSourceData1[9:5] ;
+  
+reg rColorEnable ;
+reg rSetColor ; 
+reg rEnablePos ; 
+reg rEnableAbs ; 
+reg rFFLedEN;
 //wire wVGA_RED,wVGA_GREEN,wVGA_BLUE;
 
 ROM InstructionRom
@@ -97,7 +107,6 @@ FFD_POSEDGE_SYNCRONOUS_RESET # ( 8 ) FFD4
 );
 
 
-reg rFFLedEN;
 FFD_POSEDGE_SYNCRONOUS_RESET # ( 8 ) FF_LEDS
 (
 	.Clock(Clock),
@@ -106,8 +115,7 @@ FFD_POSEDGE_SYNCRONOUS_RESET # ( 8 ) FF_LEDS
 	.D( wSourceData1[7:0] ),
 	.Q( oLed    )
 );
-reg rColorEnable ;
-reg rSetColor ; 
+
 assign wColorActual = wSourceData1[2:0] ; 
 /*
 FFD_POSEDGE_SYNCRONOUS_RESET # ( 3 ) FF_COLOR
@@ -151,6 +159,9 @@ FFD_POSEDGE_SYNCRONOUS_RESET # ( 1 ) FFDWRITE
 	.D( {rWriteEnable} ),
 	.Q( {wWriteEnablePrev} )
 );
+
+
+
 
 assign wIsImmediate = wOperation[3] && wOperation[2];
 
@@ -225,6 +236,7 @@ RAM_SINGLE_READ_PORT # (3,10,1023) VideoMemory
 .oDataOut( iPixel )
 );
 
+
 Sprite16x16 uut (
 		.Clock(Clock), 
 		.Reset(Reset), 
@@ -232,10 +244,10 @@ Sprite16x16 uut (
 		.iRowCount(wRowCount), 
 		.iEnable(1'b1), 
 		.iColorBack(ColorBG), 
-		.iChangePos(1'b1), 
-		.iAbsolute(1'b0), 
-		.iSetX(5'b00001), 
-		.iSetY(5'b00001), 
+		.iChangePos(rEnablePos), 
+		.iAbsolute(rEnableAbs), 
+		.iSetX(wSetX), 
+		.iSetY(wSetY), 
 		.iNewColor(wColorActual), 
 		.iSetColor(rSetColor), 
 		.oRGB({VGA_RED,VGA_GREEN,VGA_BLUE})
@@ -248,6 +260,8 @@ begin
 	//-------------------------------------
 	`NOP:
 	begin
+		rEnablePos <= 1'b0;
+		rEnableAbs <= 1'b0;
 		rSetColor    <= 1'b0;
 		rFFLedEN     <= 1'b0;
 		rBranchTaken <= 1'b0;
@@ -261,6 +275,8 @@ begin
 	//-------------------------------------
 	`ADD:
 	begin
+		rEnablePos <= 1'b0;
+		rEnableAbs <= 1'b0;
 		rSetColor    <= 1'b0;
 		rFFLedEN     <= 1'b0;
 		rBranchTaken <= 1'b0;
@@ -274,6 +290,8 @@ begin
 	//-------------------------------------
 	`SUB:
 	begin
+		rEnablePos <= 1'b0;
+		rEnableAbs <= 1'b0;
 		rSetColor    <= 1'b0;
 		rFFLedEN     <= 1'b0;
 		rBranchTaken <= 1'b0;
@@ -287,6 +305,8 @@ begin
 	//-------------------------------------
 	`STO:
 	begin
+		rEnablePos <= 1'b0;
+		rEnableAbs <= 1'b0;
 		rSetColor    <= 1'b0;
 		rFFLedEN     <= 1'b0;
 		rWriteEnable <= 1'b1;
@@ -300,7 +320,8 @@ begin
 	//-------------------------------------
 	`BLE:
 	begin
-		 
+		rEnablePos <= 1'b0;
+		rEnableAbs <= 1'b0;
 		rSetColor    <= 1'b0;
 		rFFLedEN     <= 1'b0;
 		rWriteEnable <= 1'b0;
@@ -318,6 +339,8 @@ begin
 	//-------------------------------------
 	`JMP:
 	begin
+		rEnablePos <= 1'b0;
+		rEnableAbs <= 1'b0;
 		rFFLedEN     <= 1'b0;
 		rWriteEnable <= 1'b0;
 		rResult      <= 0;
@@ -331,6 +354,8 @@ begin
 	//-------------------------------------
 	`CALL:
 	begin
+		rEnablePos <= 1'b0;
+		rEnableAbs <= 1'b0;
 		rFFLedEN     <= 1'b0;
 		rWriteEnable <= 1'b0;
 		rResult      <= 0;
@@ -344,6 +369,8 @@ begin
 	//-------------------------------------
 	`RET:
 	begin
+		rEnablePos <= 1'b0;
+		rEnableAbs <= 1'b0;
 		rFFLedEN     <= 1'b0;
 		rWriteEnable <= 1'b0;
 		rResult      <= 0;
@@ -357,6 +384,8 @@ begin
 	//-------------------------------------
 	`LED:
 	begin
+		rEnablePos <= 1'b0;
+		rEnableAbs <= 1'b0;
 		rFFLedEN     <= 1'b1;
 		rWriteEnable <= 1'b0;
 		rResult      <= 0;
@@ -370,6 +399,8 @@ begin
 
 	`WVM :
 	begin
+		rEnablePos <= 1'b0;
+		rEnableAbs <= 1'b0;
 		rFFLedEN     <= 1'b0;
 		rWriteEnable <= 1'b0;
 		rResult      <= 0;
@@ -384,6 +415,23 @@ begin
 	
 		`CHCOLOR :
 	begin
+		rEnablePos <= 1'b0;
+		rEnableAbs <= 1'b0;
+		rFFLedEN     <= 1'b0;
+		rWriteEnable <= 1'b0;
+		rResult      <= 0;
+		rBranchTaken <= 1'b0;
+		rReturn      <= 1'b0;
+		rCall        <= 1'b0;
+		rVideoMemWrite <= 1'b0;
+
+		rSetColor    <= 1'b1;
+
+	end
+		`MOVSP :
+	begin
+		rEnablePos <= 1'b1;
+		rEnableAbs <= 1'b0;
 		rFFLedEN     <= 1'b0;
 		rWriteEnable <= 1'b0;
 		rResult      <= 0;
