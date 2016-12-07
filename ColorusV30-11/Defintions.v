@@ -22,8 +22,7 @@
 `define MOVSP 4'd1
 `define MOVSPR 4'd4
 `define READPOSX 4'd13
-
-
+`define BOTTOMS 4'd14
 
 `define R0 8'd0
 `define R1 8'd1

@@ -93,7 +93,8 @@ begin
 		50: oInstruction = { `ADD ,`R3,`R3,`R6}; 
 		51: oInstruction = { `ADD ,`R1,`R7,`R0};
 		52: oInstruction = { `BLE , 8'd46,`R7,`R5}; 
-		53: oInstruction = { `RET , 24'd0 };
+		53: oInstruction = { `READPOSX ,`R8, 16'h0 };
+		54: oInstruction = { `RET , 24'd0 };
 
 
 // /////////////////////////////////////
@@ -110,8 +111,8 @@ begin
 		62: oInstruction = { `NOP ,24'd4000    };
 
 		// Actualiza los colores
-		63: oInstruction = { `NOP ,24'd4000    };
-		64: oInstruction = { `NOP ,24'd4000    };
+		63: oInstruction = { `BOTTOMS , `R2, 16'd0};
+		64: oInstruction = { `CHCOLOR , 8'd0,`R2, 8'd0};
 		65: oInstruction = { `NOP ,24'd4000    };
 		66: oInstruction = { `RET , 24'd0 };
 		// FIN

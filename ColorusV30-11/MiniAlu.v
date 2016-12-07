@@ -8,6 +8,10 @@ module MiniAlu
  input wire Clock,
  input wire Reset,
  output wire [7:0] oLed,
+ input wire BTN_EAST,
+ input wire BTN_NORTH,
+ input wire BTN_SOUTH,
+ input wire BTN_WEST,
  output wire  VGA_HSYNC ,
  output wire  VGA_VSYNC ,
  output wire  VGA_RED ,
@@ -32,7 +36,10 @@ wire [4:0] wSetY ;
 assign wColorActual = wSourceData1[2:0] ; 
 assign wSetX = wSourceData1[4:0] ; 
 assign wSetY = wSourceData1[9:5] ;
-  
+assign oLed[3] = BTN_EAST ; 
+assign oLed[0] = BTN_SOUTH ; 
+assign oLed[1] = BTN_NORTH ; 
+assign oLed[2] = BTN_WEST ;   
 reg rColorEnable ;
 reg rSetColor ; 
 reg rEnablePos ; 
@@ -106,7 +113,7 @@ FFD_POSEDGE_SYNCRONOUS_RESET # ( 8 ) FFD4
 	.Q(wDestination)
 );
 
-
+/*
 FFD_POSEDGE_SYNCRONOUS_RESET # ( 8 ) FF_LEDS
 (
 	.Clock(Clock),
@@ -114,7 +121,7 @@ FFD_POSEDGE_SYNCRONOUS_RESET # ( 8 ) FF_LEDS
 	.Enable( rFFLedEN ),
 	.D( wSourceData1[7:0] ),
 	.Q( oLed    )
-);
+);*/
 
 assign wColorActual = wSourceData1[2:0] ; 
 /*
@@ -487,6 +494,23 @@ begin
 		rVideoMemWrite <= 1'b0;
 		 
 	end
+	
+
+			`BOTTOMS	 :
+	begin
+		rEnablePos <= 1'b0;
+		rEnableAbs <= 1'b0;
+		rSetColor    <= 1'b0;
+		rFFLedEN     <= 1'b0;
+		rWriteEnable <= 1'b1;
+		rBranchTaken <= 1'b0;
+		rResult      <= {11'b0, BTN_EAST, BTN_NORTH, BTN_SOUTH,BTN_WEST};
+		rReturn      <= 1'b0;
+		rCall        <= 1'b0;
+		rVideoMemWrite <= 1'b0;
+
+	end
+	
 	//-------------------------------------
 	endcase
 end
