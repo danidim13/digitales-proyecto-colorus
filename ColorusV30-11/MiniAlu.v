@@ -108,6 +108,8 @@ FFD_POSEDGE_SYNCRONOUS_RESET # ( 8 ) FF_LEDS
 );
 reg rColorEnable ;
 reg rSetColor ; 
+assign wColorActual = wSourceData1[2:0] ; 
+/*
 FFD_POSEDGE_SYNCRONOUS_RESET # ( 3 ) FF_COLOR
 (
 	.Clock(Clock),
@@ -116,7 +118,7 @@ FFD_POSEDGE_SYNCRONOUS_RESET # ( 3 ) FF_COLOR
 	.D( wSourceData1[2:0] ),
 	.Q(   wColorActual  )
 );
-
+*/
 assign wImmediateValue = {wSourceAddr1,wSourceAddr0};
 
 /////////////////////////////////
@@ -254,7 +256,7 @@ begin
 		rReturn      <= 1'b0;
 		rCall        <= 1'b0;
 		rVideoMemWrite <= 1'b0;
-		rColorEnable <= 1'b0;
+		 
 	end
 	//-------------------------------------
 	`ADD:
@@ -267,7 +269,7 @@ begin
 		rReturn      <= 1'b0;
 		rCall        <= 1'b0;
 		rVideoMemWrite <= 1'b0;
-		rColorEnable <= 1'b0;
+		 
 	end
 	//-------------------------------------
 	`SUB:
@@ -280,7 +282,7 @@ begin
 		rReturn      <= 1'b0;
 		rCall        <= 1'b0;
 		rVideoMemWrite <= 1'b0;
-		rColorEnable <= 1'b0;
+		 
 	end
 	//-------------------------------------
 	`STO:
@@ -293,12 +295,12 @@ begin
 		rReturn      <= 1'b0;
 		rCall        <= 1'b0;
 		rVideoMemWrite <= 1'b0;
-		rColorEnable <= 1'b0;
+		 
 	end
 	//-------------------------------------
 	`BLE:
 	begin
-		rColorEnable <= 1'b0;
+		 
 		rSetColor    <= 1'b0;
 		rFFLedEN     <= 1'b0;
 		rWriteEnable <= 1'b0;
@@ -323,7 +325,7 @@ begin
 		rReturn      <= 1'b0;
 		rCall        <= 1'b0;
 		rVideoMemWrite <= 1'b0;
-		rColorEnable <= 1'b0;
+		 
 		rSetColor    <= 1'b0;
 	end
 	//-------------------------------------
@@ -336,7 +338,7 @@ begin
 		rReturn      <= 1'b0;
 		rCall        <= 1'b1;
 		rVideoMemWrite <= 1'b0;
-		rColorEnable <= 1'b0;
+		 
 		rSetColor    <= 1'b0;
 	end
 	//-------------------------------------
@@ -349,7 +351,7 @@ begin
 		rReturn      <= 1'b1;
 		rCall        <= 1'b0;
 		rVideoMemWrite <= 1'b0;
-		rColorEnable <= 1'b0;
+		 
 		rSetColor    <= 1'b0;
 	end
 	//-------------------------------------
@@ -362,7 +364,7 @@ begin
 		rReturn      <= 1'b0;
 		rCall        <= 1'b0;
 		rVideoMemWrite <= 1'b0;
-		rColorEnable <= 1'b0;
+		
 		rSetColor    <= 1'b0;
 	end
 
@@ -375,7 +377,7 @@ begin
 		rReturn      <= 1'b0;
 		rCall        <= 1'b0;
 		rVideoMemWrite <= 1'b1;
-		rColorEnable <= 1'b0;
+		
 		rSetColor    <= 1'b0;
 
 	end
@@ -399,7 +401,7 @@ begin
 		rReturn      <= 1'b0;
 		rCall        <= 1'b0;
 		rVideoMemWrite <= 1'b0;
-		rColorEnable <= 1'b0;
+		 
 	end
 	//-------------------------------------
 	endcase
