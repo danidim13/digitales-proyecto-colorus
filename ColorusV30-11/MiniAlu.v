@@ -5,13 +5,8 @@
 
 module MiniAlu
 (
-
  input wire Clock,
  input wire Reset,
- input wire BTN_EAST,
- input wire  BTN_SOUTH,
- input wire BTN_NORTH,
- input wire BTN_WEST ,
  output wire [7:0] oLed,
  output wire  VGA_HSYNC ,
  output wire  VGA_VSYNC ,
@@ -37,11 +32,7 @@ wire [4:0] wSetY ;
 assign wColorActual = wSourceData1[2:0] ; 
 assign wSetX = wSourceData1[4:0] ; 
 assign wSetY = wSourceData1[9:5] ;
-assign oLed[7] = BTN_EAST ; 
-assign oLed[0] = BTN_SOUTH ; 
-assign oLed[1] = BTN_NORTH ; 
-assign oLed[2] = BTN_WEST ; 
-
+  
 reg rColorEnable ;
 reg rSetColor ; 
 reg rEnablePos ; 
@@ -55,7 +46,7 @@ ROM InstructionRom
 	.oInstruction( wInstruction )
 );
 
-RAM_DUAL_READ_PORT DataRam
+RAM_DUAL_READ_PORT # (16, 8, 15) DataRam 
 (
 	.Clock(         Clock        ),
 	.iWriteEnable(  rWriteEnable ),
@@ -115,7 +106,7 @@ FFD_POSEDGE_SYNCRONOUS_RESET # ( 8 ) FFD4
 	.Q(wDestination)
 );
 
-/*
+
 FFD_POSEDGE_SYNCRONOUS_RESET # ( 8 ) FF_LEDS
 (
 	.Clock(Clock),
@@ -123,8 +114,7 @@ FFD_POSEDGE_SYNCRONOUS_RESET # ( 8 ) FF_LEDS
 	.Enable( rFFLedEN ),
 	.D( wSourceData1[7:0] ),
 	.Q( oLed    )
-);*/
-
+);
 
 assign wColorActual = wSourceData1[2:0] ; 
 /*
@@ -173,7 +163,7 @@ FFD_POSEDGE_SYNCRONOUS_RESET # ( 1 ) FFDWRITE
 
 
 
-assign wIsImmediate = wOperation[3] && wOperation[2] &&  ~wOperation[1];
+assign wIsImmediate = wOperation[3] && wOperation[2];
 
 assign wHazard0 = ((wDestinationPrev == wSourceAddr0) && wWriteEnablePrev && ~wIsImmediate ) ? 1'b1 : 1'b0;
 assign wHazard1 = ((wDestinationPrev == wSourceAddr1) && wWriteEnablePrev && ~wIsImmediate ) ? 1'b1 : 1'b0;
@@ -454,6 +444,22 @@ begin
 		rSetColor    <= 1'b0;
 
 	end	
+		
+		`MOVSPR :
+	begin
+		rEnablePos <= 1'b1;
+		rEnableAbs <= 1'b0;
+		rFFLedEN     <= 1'b0;
+		rWriteEnable <= 1'b0;
+		rResult      <= 0;
+		rBranchTaken <= 1'b0;
+		rReturn      <= 1'b0;
+		rCall        <= 1'b0;
+		rVideoMemWrite <= 1'b0;
+		rSetColor    <= 1'b0;
+
+	end	
+		
 		`READPOSX :
 	begin
 		rEnablePos <= 1'b0;

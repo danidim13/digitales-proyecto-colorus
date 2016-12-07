@@ -23,8 +23,6 @@
 `define MOVSPR 4'd4
 `define READPOSX 4'd13
 
-`define W 8'h1D
-`define A 8'h1C
 
 
 `define R0 8'd0
@@ -41,8 +39,8 @@
 `define R11 11'd11
 `define R12 12'd12
 `define R13 13'd13
-`define R14 14'd14
-`define R15 15'd15
+`define RSP 14'd14
+`define RBG 15'd15
 
 `define BLACK 	3'b000
 `define BLUE	3'b001
