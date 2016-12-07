@@ -432,20 +432,6 @@ begin
 		`MOVSP :
 	begin
 		rEnablePos <= 1'b1;
-		rEnableAbs <= 1'b1;
-		rFFLedEN     <= 1'b0;
-		rWriteEnable <= 1'b0;
-		rResult      <= 0;
-		rBranchTaken <= 1'b0;
-		rReturn      <= 1'b0;
-		rCall        <= 1'b0;
-		rVideoMemWrite <= 1'b0;
-		rSetColor    <= 1'b0;
-
-	end	
-		`MOVSPR : 
-		begin
-		rEnablePos <= 1'b1;
 		rEnableAbs <= 1'b0;
 		rFFLedEN     <= 1'b0;
 		rWriteEnable <= 1'b0;
@@ -454,11 +440,10 @@ begin
 		rReturn      <= 1'b0;
 		rCall        <= 1'b0;
 		rVideoMemWrite <= 1'b0;
-		rSetColor    <= 1'b0;
+
+		rSetColor    <= 1'b1;
 
 	end	
-		
-		
 		`READPOSX :
 	begin
 		rEnablePos <= 1'b0;
