@@ -173,7 +173,7 @@ FFD_POSEDGE_SYNCRONOUS_RESET # ( 1 ) FFDWRITE
 
 
 
-assign wIsImmediate = wOperation[3] && wOperation[2];
+assign wIsImmediate = wOperation[3] && wOperation[2] &&  ~wOperation[1];
 
 assign wHazard0 = ((wDestinationPrev == wSourceAddr0) && wWriteEnablePrev && ~wIsImmediate ) ? 1'b1 : 1'b0;
 assign wHazard1 = ((wDestinationPrev == wSourceAddr1) && wWriteEnablePrev && ~wIsImmediate ) ? 1'b1 : 1'b0;
