@@ -32,6 +32,14 @@
 `define R5 8'd5
 `define R6 8'd6
 `define R7 8'd7
+`define R8 8'd8
+`define R9 9'd9
+`define R10 10'd10
+`define R11 11'd11
+`define R12 12'd12
+`define R13 13'd13
+`define R14 14'd14
+`define R15 15'd15
 
 `define BLACK 	3'b000
 `define BLUE	3'b001
