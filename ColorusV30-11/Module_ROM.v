@@ -43,13 +43,13 @@ begin
 
 		// Esperar
 		17: oInstruction = { `NOP , 24'd4000      };
-		18: oInstruction = { `JMP , 8'd15, 18'b0   };
+		18: oInstruction = { `JMP , 8'd17, 16'b0   };
 
 // Subrutina que escribe el color en R4 a las posiciones de
 // la memoria de video [R1 - R3], R2 debe ser 1
 		32: oInstruction = { `WVM , 8'd0,`R4,`R1};
 		33: oInstruction = { `ADD ,`R1,`R1,`R2}; 
-		34: oInstruction = { `BLE , 8'd17,`R1,`R3  };
+		34: oInstruction = { `BLE , 8'd32,`R1,`R3  };
 		35: oInstruction = { `RET , 24'd0 };
 		36: oInstruction = { `RET , 24'd0 };
 

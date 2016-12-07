@@ -237,7 +237,7 @@ RAM_SINGLE_READ_PORT # (3,10,1023) VideoMemory
 );
  
 wire [9:0] outPutPosX;
-Sprite16x16 uut (
+Sprite16x16 sprite (
 		.Clock(Clock), 
 		.Reset(Reset), 
 		.iColumnCount(wColumnCount), 
@@ -245,9 +245,9 @@ Sprite16x16 uut (
 		.iEnable(1'b1), 
 		.iColorBack(ColorBG), 
 		.iChangePos(rEnablePos), 
-		.iAbsolute(rEnableAbs), 
+		.iAbsolute(1'b1), 
 		.iSetX(wSetX), 
-		.iSetY(wSetY), 
+		.iSetY(wSetY),  
 		.iNewColor(wColorActual), 
 		.iSetColor(rSetColor), 
 		.oRGB({VGA_RED,VGA_GREEN,VGA_BLUE}),
