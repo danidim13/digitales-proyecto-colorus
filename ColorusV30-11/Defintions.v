@@ -20,6 +20,7 @@
 `define WVM  4'd10	// 1001
 `define CHCOLOR  4'd11	// 1001
 `define MOVSP 4'd1
+`define MOVSPR 4'd4
 `define READPOSX 4'd13
 
 
